@@ -27,8 +27,18 @@
           type = lib.types.raw;
         };
 
-        systemd = lib.mkOption {
-          type = lib.types.raw;
+        systemd = {
+          sockets = lib.mkOption {
+            type = lib.types.raw;
+          };
+
+          targets = lib.mkOption {
+            type = lib.types.raw;
+          };
+
+          services = lib.mkOption {
+            type = lib.types.raw;
+          };
         };
       };
     };
