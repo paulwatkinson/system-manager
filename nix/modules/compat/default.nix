@@ -30,11 +30,6 @@
       default.enable = false;
       type = lib.types.attrs;
     };
-
-    systemd.additionalUpstreamSystemUnits = lib.mkOption {
-      default = [];
-      type = lib.types.listOf lib.types.str;
-    };
   };
 
   config = {
