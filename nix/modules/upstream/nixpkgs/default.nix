@@ -24,10 +24,7 @@
     # to inform users that they need to be enabled in the host system?
     {
       boot = lib.mkOption {
-        default = {
-          # Added for compat with some NixOS modules
-          isContainer = false;
-        };
+        type = lib.types.raw;
       };
     };
 
