@@ -36,5 +36,8 @@
     };
   };
 
-  config.environment.profileRelativeSessionVariables = {};
+  config = {
+    environment.profileRelativeSessionVariables = {};
+    security.pam.krb5.enable = false;
+  };
 }
