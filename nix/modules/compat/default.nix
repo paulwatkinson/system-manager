@@ -1,6 +1,7 @@
 {
-  nixosModulesPath,
   lib,
+  nixosModulesPath,
+  pkgs,
   ...
 }: {
   imports =
@@ -39,5 +40,9 @@
   config = {
     environment.profileRelativeSessionVariables = {};
     security.pam.krb5.enable = false;
+
+    system.build.earlyMountScript = pkgs.writeText "mounts.sh" ''
+      # NO-OP
+    '';
   };
 }
