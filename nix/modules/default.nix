@@ -7,6 +7,7 @@
 }:
 {
   imports = [
+    ./compat
     ./environment.nix
     ./etc.nix
     ./systemd.nix
