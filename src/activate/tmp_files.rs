@@ -2,7 +2,9 @@ use crate::activate;
 use crate::activate::etc_files::FileTree;
 
 use super::ActivationResult;
-use std::process;
+use std::path::PathBuf;
+use std::str::FromStr;
+use std::{fs, process};
 
 type TmpFilesActivationResult = ActivationResult<()>;
 
@@ -18,6 +20,15 @@ pub fn activate(etc_tree: &FileTree) -> TmpFilesActivationResult {
                 .map(|(_, node)| node.path.to_string_lossy().to_string())
                 .collect::<Vec<_>>()
         });
+
+    for value in ["/lib", "/lib64"] {
+        let target = PathBuf::from_str(value).unwrap();
+
+        if target.is_symlink() {
+            fs::remove_file(&target).unwrap();
+        }
+    }
+
     let mut cmd = process::Command::new("systemd-tmpfiles");
     cmd.arg("--create").arg("--remove").args(conf_files);
     log::debug!("running {:#?}", cmd);
