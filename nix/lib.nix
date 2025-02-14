@@ -46,7 +46,8 @@ let
                       }
                     else
                       {
-                        system = cfg.hostPlatform;
+                        localSystem = cfg.hostPlatform;
+                        # system = cfg.hostPlatform;
                       };
                 in
                 import nixpkgs (
