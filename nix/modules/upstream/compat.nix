@@ -33,6 +33,7 @@
     "/system/boot/stage-2.nix"
     "/system/boot/systemd.nix"
     "/system/boot/systemd/tmpfiles.nix"
+    "/system/etc/etc-activation.nix"
     "/system/etc/etc.nix"
     "/testing/service-runner.nix"
     "/virtualisation/nixos-containers.nix"
@@ -53,7 +54,6 @@
 
   blockedOptions = [
     "systemd"
-    "environment"
   ];
 
   partialOptions = {
