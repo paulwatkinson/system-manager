@@ -29,8 +29,16 @@ pub fn activate(etc_tree: &FileTree) -> TmpFilesActivationResult {
         }
     }
 
-    let mut cmd = process::Command::new("systemd-tmpfiles");
-    cmd.arg("--create").arg("--remove").args(conf_files);
+    let mut cmd = process::Command::new("nix");
+
+    cmd.arg("shell")
+        .arg("nixpkgs#systemd")
+        .arg("-c")
+        .arg("systemd-tmpfiles")
+        .arg("--create")
+        .arg("--remove")
+        .args(conf_files);
+
     log::debug!("running {:#?}", cmd);
     let output = cmd
         .stdout(process::Stdio::inherit())
